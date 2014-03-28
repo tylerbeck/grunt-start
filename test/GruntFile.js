@@ -4,14 +4,14 @@
  * License: MIT
  ***********************************************************************/
 
-var gtools = require('../lib/index');
+var gtools = require('../grunt-toolbox/lib/');
 
 var configDirs = [
 
 ];
 
 var taskDirs = [
-	"../lib/tasks"
+	"./tasks"
 ];
 
 //npmTasks, taskDirectories, configDirectories, initFn

@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "grunt"
+    //"start": "grunt"
   },
-  "main": "lib/grunt-toolbox.js",
+  "main": "lib",
   "dependencies": {
 	  "lodash": "~2.4.1",
 	  "bower": "~1.2.8",
