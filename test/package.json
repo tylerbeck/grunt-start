@@ -19,6 +19,10 @@
     "grunt-contrib-watch": "~0.5.3",
     "grunt-csso": "~0.5.3",
 	"grunt-toolbox": "git+ssh://git@github.com:tylerbeck/grunt-toolbox",
-    "grunt-webfont": "~0.3.2"
+    "grunt-webfont": "~0.3.2",
+	  "lodash": "~2.4.1",
+	  "matchdep": "~0.3.0",
+	  "glob": "~3.2.9"
+
   }
 }
