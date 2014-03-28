@@ -1,0 +1,19 @@
+{
+  "name": "grunt-toolbox",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "grunt"
+  },
+  "main": "lib/grunt-toolbox.js",
+  "dependencies": {
+	  "lodash": "~2.4.1",
+	  "bower": "~1.2.8",
+	  "grunt": "~0.4.2",
+	  "grunt-cli": "~0.1.13",
+	  "matchdep": "~0.3.0",
+	  "glob": "~3.2.9"
+  },
+  "devDependencies": {
+  }
+}
