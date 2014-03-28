@@ -4,7 +4,7 @@
  * License: MIT
  ***********************************************************************/
 
-var gtools = require('../grunt-toolbox/lib/');
+var gruntToolbox = require('grunt-toolbox');
 
 var configDirs = [
 
@@ -15,7 +15,7 @@ var taskDirs = [
 ];
 
 //npmTasks, taskDirectories, configDirectories, initFn
-module.exports = new gtools.Scaffold(
+module.exports = new gruntToolbox.Scaffold(
 		//load npm tasks
 		true,
 		//array of or single directory path in which grunt tasks have been defined
