@@ -16,12 +16,16 @@ var taskDirs = [
 
 //npmTasks, taskDirectories, configDirectories, initFn
 module.exports = new gruntToolbox.Scaffold(
+
 		//load npm tasks
 		true,
+
 		//array of or single directory path in which grunt tasks have been defined
 		taskDirs,
+
 		//array of or single directory path in which grunt configuration objects have been defined
 		configDirs,
+
 		//grunt file scripts
 		function( grunt ){
 

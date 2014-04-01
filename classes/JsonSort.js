@@ -4,8 +4,6 @@
  * License: MIT
  ***********************************************************************/
 
-var path = require( 'path' );
-
 /**
  * Bower Copy Class
  * @param grunt
@@ -16,6 +14,10 @@ var path = require( 'path' );
  * @constructor
  */
 module.exports = function JsonSort( grunt, path, props, done ){
+	/*================================================
+	 * Dependencies
+	 *===============================================*/
+	var path = require( 'path' );
 
 	/*================================================
 	 * Public Attributes

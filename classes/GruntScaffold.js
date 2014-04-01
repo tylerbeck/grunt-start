@@ -4,12 +4,6 @@
  * License: MIT
  ***********************************************************************/
 
-var _ = require('lodash');
-var matchdep = require('matchdep');
-var path = require('path');
-var glob = require('glob');
-
-
 /**
  * Creates an autoloading grunt scaffolding
  * @param npmTasks
@@ -20,11 +14,18 @@ var glob = require('glob');
  */
 module.exports = function( npmTasks, taskDirectories, configDirectories, initFn ){
 
+	/*================================================
+	 * Dependencies
+	 *===============================================*/
+	var _ = require('lodash');
+	var matchdep = require('matchdep');
+	var path = require('path');
+	var glob = require('glob');
+
 
 	/*================================================
 	 * Private Methods
 	 *===============================================*/
-
 	/**
 	 * loads any modules prefixed with 'grunt-' listed in
 	 * package.json's devDependencies
@@ -34,6 +35,7 @@ module.exports = function( npmTasks, taskDirectories, configDirectories, initFn 
 		grunt.verbose.writeln( 'Loading grunt tasks from dev dependencies: '+npmTasks );
 		grunt.verbose.writeln( '  cwd: '+process.cwd() );
 		if ( npmTasks ) {
+			//get dependencies from current working directory
 			var matches = matchdep.filterDev( 'grunt-*', path.join( process.cwd(), '/package.json' ) );
 			grunt.verbose.writeln( '['+matches.join(', ')+']' );
 			matches.forEach( function( item ) {

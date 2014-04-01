@@ -4,9 +4,6 @@
  * License: MIT
  ***********************************************************************/
 
-var bower = require( 'bower' );
-var path = require( 'path' );
-
 /**
  * Bower Copy Class
  * @param grunt
@@ -20,6 +17,12 @@ var path = require( 'path' );
  * @constructor
  */
 module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCommonPath, done ){
+	/*================================================
+	 * Dependencies
+	 *===============================================*/
+	var bower = require( 'bower' );
+	var path = require( 'path' );
+
 
 	/*================================================
 	 * Public Attributes

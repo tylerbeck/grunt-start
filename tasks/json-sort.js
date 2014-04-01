@@ -4,12 +4,14 @@
  * License: MIT
  ***********************************************************************/
 
-var JsonSort = require('../classes/JsonSort');
 
-/*================================================
- * Export Module
- *===============================================*/
 module.exports = function( grunt ){
+
+	/*================================================
+	 * Dependencies
+	 *===============================================*/
+	var JsonSort = require('../classes/JsonSort');
+
 
 	/**
 	 * @documentation
@@ -42,6 +44,9 @@ module.exports = function( grunt ){
 	 *
 	 */
 
+	/*================================================
+	 * Task
+	 *===============================================*/
 	grunt.registerMultiTask('json-sort', function(){
 
 		//create instance of class and execute

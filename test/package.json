@@ -10,6 +10,6 @@
     "grunt-contrib-requirejs": "~0.4.1",
     "grunt-csso": "~0.5.3",
     "grunt-webfont": "~0.3.2",
-    "grunt-toolbox": "0.0.1"
+    "grunt-toolbox": "git+ssh://git@github.com:tylerbeck/grunt-toolbox"
   }
 }

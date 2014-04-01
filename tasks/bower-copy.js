@@ -4,12 +4,13 @@
  * License: MIT
  ***********************************************************************/
 
-var BowerCopy = require('../classes/BowerCopy');
 
-/*================================================
- * Export Module
- *===============================================*/
 module.exports = function( grunt ){
+
+	/*================================================
+	 * Dependencies
+	 *===============================================*/
+	var BowerCopy = require('../classes/BowerCopy');
 
 	/**
 	 * @documentation
@@ -84,6 +85,10 @@ module.exports = function( grunt ){
 	 *
 	 */
 
+
+	/*================================================
+	 * Task
+	 *===============================================*/
 	grunt.registerMultiTask('bower-copy', function(){
 		//create instance of class and execute
 		( new BowerCopy(
