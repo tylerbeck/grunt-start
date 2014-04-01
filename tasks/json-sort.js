@@ -30,8 +30,8 @@ module.exports = function( grunt ){
 	 *      "package": {
 	 *          "path": "package.json",
 	 *          "properties": [
-	 *              "dependencies',
-	 *              'devDependencies'
+	 *              "dependencies",
+	 *              "devDependencies"
 	 *          ]
 	 *      },
 	 *      "bower": {

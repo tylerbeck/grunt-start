@@ -7,17 +7,18 @@
 /**
  * Bower Copy Class
  * @param grunt
- * @param path
+ * @param filepath
  * @param props
  * @param done
  * @returns {JsonSort}
  * @constructor
  */
-module.exports = function JsonSort( grunt, path, props, done ){
+module.exports = function JsonSort( grunt, filepath, props, done ){
 	/*================================================
 	 * Dependencies
 	 *===============================================*/
 	var path = require( 'path' );
+	var _ = require( 'lodash' );
 
 	/*================================================
 	 * Public Attributes
@@ -34,29 +35,30 @@ module.exports = function JsonSort( grunt, path, props, done ){
 
 		//first make sure everything needed is set
 		if ( validateParameters() ){
-
-			if ( grunt.file.exists( path ) ){
+			if ( grunt.file.exists( filepath ) ){
+				grunt.verbose.writeln( 'Loading: '+ filepath );
 				try {
 					//read file
-					var obj = grunt.file.readJSON( path );
-
+					var obj = grunt.file.readJSON( filepath );
 					//iterate specified properties & sort
+
 					props.forEach( function( prop ){
+						grunt.verbose.writeln( 'Sorting: '+ prop );
 						if (obj[ prop ]){
 							obj[ prop ] = sortObjectProperties( obj[ prop ] );
 						}
 					});
 
 					//save file
-					grunt.file.write( path, JSON.stringify( obj, null,"  ") );
+					grunt.file.write( filepath, JSON.stringify( obj, null,"  ") );
 
 				}
 				catch (e){
-					grunt.log.error('Error reading '+path);
+					grunt.log.error('Error reading '+filepath);
 				}
 			}
 			else{
-				grunt.log.error('File not found at: '+path);
+				grunt.log.error('File not found at: '+filepath);
 			}
 		}
 
@@ -76,7 +78,7 @@ module.exports = function JsonSort( grunt, path, props, done ){
 		var check = true;
 
 		//lib path must be set
-		if ( !path || typeof path != 'string'){
+		if ( !filepath || typeof filepath != 'string'){
 			grunt.log.error( 'A valid file path must be configured.');
 			check = false;
 		}
@@ -100,7 +102,6 @@ module.exports = function JsonSort( grunt, path, props, done ){
 		keys = keys.sort().reverse();
 		var key;
 		while (key = keys.pop()){
-			//console.log(key);
 			//deep cloning shouldn't be needed for prop files, but just in case...
 			newObj[ key ] = _.cloneDeep( obj[key] );
 		}

@@ -72,6 +72,7 @@ module.exports = function( npmTasks, taskDirectories, configDirectories, initFn 
 
 	/**
 	 * creates a configuration object from files in specifed config directory
+	 * @param grunt {{}}
 	 * @param dirs {Array|String}
 	 * @returns {{}}
 	 */
@@ -85,12 +86,26 @@ module.exports = function( npmTasks, taskDirectories, configDirectories, initFn 
 				dirs = [ dirs ];
 
 			dirs.forEach( function( dir ) {
+				grunt.verbose.writeln("");
+				grunt.verbose.writeln("Registering "+dir+" configruations.");
+				var options;
 				glob.sync( '*', {cwd: dir} ).forEach( function( option ) {
-					grunt.verbose.writeln( "loading: " + dir + option );
-					var options = grunt.file.readJSON( dir + option );
+					var resolvedPath = path.join( process.cwd(), dir, option );
+					grunt.verbose.writeln( "Loading: " + resolvedPath );
+					switch ( path.extname( option ) ){
+						case '.json':
+							options = grunt.file.readJSON( resolvedPath );
+							break;
+
+						case '.js':
+							options = require( resolvedPath );
+							break;
+					}
+
 					//merge options into config config
 					_.merge( config, options );
 				} );
+				grunt.verbose.writeln("");
 			} );
 		}
 
