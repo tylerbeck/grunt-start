@@ -2,9 +2,7 @@
   "name": "grunt-toolbox",
   "version": "0.0.1",
   "private": true,
-  "scripts": {
-  },
-  "main": "lib",
+  "main": "lib/index.js",
   "dependencies": {
 	  "lodash": "~2.4.1",
 	  "bower": "~1.2.8",
@@ -15,4 +13,4 @@
   },
   "devDependencies": {
   }
-}
+ }
