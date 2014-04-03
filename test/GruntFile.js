@@ -7,7 +7,7 @@
 var gruntToolbox = require('grunt-toolbox');
 
 var configDirs = [
-
+	"./config"
 ];
 
 var taskDirs = [
@@ -31,7 +31,10 @@ module.exports = new gruntToolbox.Scaffold(
 
 			grunt.registerTask('default', function(){
 				grunt.log.writeln( 'IT WORKS!' );
-			})
+			});
+
+			//TODO: add task to clean test
+
 
 		}
 );

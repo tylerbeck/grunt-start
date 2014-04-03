@@ -1,0 +1,28 @@
+{
+	"bower-copy": {
+		"default": {
+			"libPath": "destination/assets/js/lib",
+			"shim": {
+				"jcrop": [
+					"css/Jcrop.gif",
+					"css/jquery.Jcrop.min.css",
+					"js/jquery.Jcrop.min.js"
+				],
+				"jquery": "dist/jquery.min.js",
+				"tileserver-php": "./**",
+				"php-opencloud": "lib/**"
+			},
+			"map": {
+				"jcrop": {
+					"css/Jcrop.gif": "../../css/Jcrop.gif",
+					"css/jquery.Jcrop.min.css": "../../css/jquery.Jcrop.min.css",
+					"js/jquery.Jcrop.min.js": "jquery.Jcrop.min.js"
+				},
+				"jquery/dist/jquery.min.js": "jquery.min.js",
+				"normalize.css/normalize.css": "../../css/normalize.css",
+				"tileserver-php": "../../../tileserver",
+				"php-opencloud/lib": "../../../opencloud"
+			}
+		}
+	}
+}

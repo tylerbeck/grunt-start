@@ -2,6 +2,11 @@
   "name": "Metro",
   "version": "0.0.1",
   "dependencies": {
+    "jquery": "~2.1.0",
+    "jcrop": "~0.9.12",
+    "normalize.css": "~3.0.1",
+    "tileserver-php": "klokantech/tileserver-php",
+    "php-opencloud": "rackspace/php-opencloud#~1.9.2"
   },
   "ignore": [
     "**/.*",
