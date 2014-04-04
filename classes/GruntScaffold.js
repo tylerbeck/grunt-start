@@ -128,7 +128,11 @@ module.exports = function( npmTasks, taskDirectories, configDirectories, initFn 
 		loadCustomTasks( grunt, taskDirectories );
 
 		//initiealize grunt config
-		grunt.initConfig( getConfiguration( grunt, configDirectories ) );
+		var config = getConfiguration( grunt, configDirectories );
+		grunt.verbose.writeln('BEGIN CONFIGURATION ------------------------------------');
+		grunt.verbose.writeln( JSON.stringify( config, undefined, "  " ) );
+		grunt.verbose.writeln('END CONFIGURATION --------------------------------------');
+		grunt.initConfig( config );
 
 		if (initFn && typeof initFn == 'function')
 			initFn( grunt );
