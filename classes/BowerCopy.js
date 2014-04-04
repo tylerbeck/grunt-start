@@ -21,8 +21,8 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 	 * Dependencies
 	 *===============================================*/
 	var bower = require( 'bower' );
-	var path  = require( 'path' );
-	var glob  = require( 'glob' );
+	var path = require( 'path' );
+	var glob = require( 'glob' );
 
 
 	/*================================================
@@ -70,14 +70,14 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 
 		//lib path must be set
 		bowerPath = bowerPath || "bower_components";
-		grunt.verbose.writeln('bowerPath: '+bowerPath);
+		grunt.verbose.writeln( 'bowerPath: ' + bowerPath );
 		if ( typeof bowerPath != 'string' ) {
 			grunt.log.error( 'Bower path must be a string.' );
 			check = false;
 		}
 
 		//lib path must be set
-		grunt.verbose.writeln('libPath: '+libPath);
+		grunt.verbose.writeln( 'libPath: ' + libPath );
 		if ( !libPath || typeof libPath != 'string' ) {
 			grunt.log.error( 'Default destination path must be configured.' );
 			check = false;
@@ -85,7 +85,7 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 
 		//shim isn't required, but must be a key value object
 		shim = shim || {};
-		grunt.verbose.writeln('shim:');
+		grunt.verbose.writeln( 'shim:' );
 		grunt.verbose.writeln( JSON.stringify( shim, undefined, "  " ) );
 		if ( typeof shim != "object" ) {
 			grunt.log.error( 'shim must be an object.' );
@@ -94,7 +94,7 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 
 		//map isn't required, but must be a key value object
 		map = map || {};
-		grunt.verbose.writeln('map:');
+		grunt.verbose.writeln( 'map:' );
 		grunt.verbose.writeln( JSON.stringify( map, undefined, "  " ) );
 		if ( typeof map != "object" ) {
 			grunt.log.error( 'map must be an object.' );
@@ -103,7 +103,7 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 
 		//useCommonPath isn't required, but must be boolean
 		useCommonPath = useCommonPath || false;
-		grunt.verbose.writeln('useCommonPath: '+useCommonPath);
+		grunt.verbose.writeln( 'useCommonPath: ' + useCommonPath );
 		if ( typeof useCommonPath != "boolean" ) {
 			grunt.log.error( 'map must be a boolean value.' );
 			check = false;
@@ -118,7 +118,7 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 	 * @param map
 	 * @returns {{}}
 	 */
-	//TODO: add full globbing for from and to mappings
+		//TODO: add full globbing for from and to mappings
 	function expandMap( map ) {
 		grunt.verbose.writeln( 'BowerCopy::expandMap' );
 		var expanded = {};
@@ -162,18 +162,18 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 										expanded[ fsrc ] = fpath;
 									}
 									else if ( grunt.file.isDir( fsrc ) ) {
-										grunt.verbose.writeln( '   map directory: '+fsrc+'/**' );
-										glob.sync( fsrc + '/**' ).forEach( function( filename ) {
+										grunt.verbose.writeln( '   map directory: ' + fsrc + '/**' );
+										glob.sync( fsrc + '/**', { dot: true } ).forEach( function( filename ) {
 											if ( grunt.file.isFile( filename ) ) {
 												fpath = path.normalize( path.join( libPath, value[ f ], filename.replace( fsrc, "" ) ) );
-												grunt.verbose.writeln( '     from:'+filename );
-												grunt.verbose.writeln( '       to:'+fpath );
+												grunt.verbose.writeln( '     from:' + filename );
+												grunt.verbose.writeln( '       to:' + fpath );
 												expanded[ filename ] = fpath;
 											}
 										} );
 
 									}
-									else{
+									else {
 										grunt.log.error( 'Could not locate source path: ' + fsrc );
 									}
 								}
@@ -182,12 +182,12 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 						}
 						else if ( typeof value == "string" ) {
 							//map entire directory
-							grunt.verbose.writeln( '   map directory: '+src+'/**' );
-							glob.sync( src + '/**' ).forEach( function( filename ) {
+							grunt.verbose.writeln( '   map directory: ' + src + '/**' );
+							glob.sync( src + '/**', { dot: true } ).forEach( function( filename ) {
 								if ( grunt.file.isFile( filename ) ) {
 									fpath = path.normalize( path.join( libPath, value, filename.replace( src, "" ) ) );
-									grunt.verbose.writeln( '     from:'+filename );
-									grunt.verbose.writeln( '       to:'+fpath );
+									grunt.verbose.writeln( '     from:' + filename );
+									grunt.verbose.writeln( '       to:' + fpath );
 
 									expanded[ filename ] = fpath;
 								}
@@ -282,7 +282,7 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 		var componentMap = {};
 		for ( var i = 0, l = fileList.length; i < l; i++ ) {
 			//need to iterate over glob style matches
-			glob.sync( path.join( name, fileList[i] ), {cwd: bowerPath} ).forEach( function( filename ) {
+			glob.sync( path.join( name, fileList[i] ), { cwd: bowerPath, dot: true } ).forEach( function( filename ) {
 				var src = path.normalize( path.join( bowerPath, filename ) );
 				if ( grunt.file.isFile( src ) ) {
 					if ( expandedMap[ src ] != undefined ) {
