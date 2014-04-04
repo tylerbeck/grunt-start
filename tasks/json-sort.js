@@ -12,7 +12,6 @@ module.exports = function( grunt ){
 	 *===============================================*/
 	var JsonSort = require('../classes/JsonSort');
 
-
 	/**
 	 * @documentation
 	 *
@@ -47,15 +46,16 @@ module.exports = function( grunt ){
 	/*================================================
 	 * Task
 	 *===============================================*/
-	grunt.registerMultiTask('json-sort', function(){
+	grunt.registerMultiTask('json-sort', 'Sort JSON Properties.', function(){
 
 		//create instance of class and execute
 		( new JsonSort(
 				grunt,
 				this.data.path,
-				this.data.properties,
-				this.async()
+				this.data.properties
 		) ).execute();
+
+		grunt.log.writeln();
 
 	} );
 

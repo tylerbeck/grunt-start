@@ -9,11 +9,10 @@
  * @param grunt
  * @param filepath
  * @param props
- * @param done
  * @returns {JsonSort}
  * @constructor
  */
-module.exports = function JsonSort( grunt, filepath, props, done ){
+module.exports = function JsonSort( grunt, filepath, props ){
 	/*================================================
 	 * Dependencies
 	 *===============================================*/

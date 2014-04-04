@@ -89,7 +89,7 @@ module.exports = function( grunt ){
 	/*================================================
 	 * Task
 	 *===============================================*/
-	grunt.registerMultiTask('bower-copy', function(){
+	grunt.registerMultiTask('bower-copy', 'Copy Bower Dependencies.', function(){
 		//create instance of class and execute
 		( new BowerCopy(
 				grunt,
@@ -100,6 +100,8 @@ module.exports = function( grunt ){
 				this.data.useCommonPath,
 				this.async()
 		) ).execute();
+
+		grunt.log.writeln();
 
 	} );
 
