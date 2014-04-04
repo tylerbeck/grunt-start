@@ -118,6 +118,7 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 	 * @param map
 	 * @returns {{}}
 	 */
+	//TODO: add full globbing for from and to mappings
 	function expandMap( map ) {
 		grunt.verbose.writeln( 'BowerCopy::expandMap' );
 		var expanded = {};
@@ -160,7 +161,19 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 										//source exists, continue with mapping
 										expanded[ fsrc ] = fpath;
 									}
-									else {
+									else if ( grunt.file.isDir( fsrc ) ) {
+										grunt.verbose.writeln( '   map directory: '+fsrc+'/**' );
+										glob.sync( fsrc + '/**' ).forEach( function( filename ) {
+											if ( grunt.file.isFile( filename ) ) {
+												fpath = path.normalize( path.join( libPath, value[ f ], filename.replace( fsrc, "" ) ) );
+												grunt.verbose.writeln( '     from:'+filename );
+												grunt.verbose.writeln( '       to:'+fpath );
+												expanded[ filename ] = fpath;
+											}
+										} );
+
+									}
+									else{
 										grunt.log.error( 'Could not locate source path: ' + fsrc );
 									}
 								}
@@ -169,7 +182,7 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 						}
 						else if ( typeof value == "string" ) {
 							//map entire directory
-							grunt.verbose.writeln( '   map directory: '+src+'/*' );
+							grunt.verbose.writeln( '   map directory: '+src+'/**' );
 							glob.sync( src + '/**' ).forEach( function( filename ) {
 								if ( grunt.file.isFile( filename ) ) {
 									fpath = path.normalize( path.join( libPath, value, filename.replace( src, "" ) ) );
