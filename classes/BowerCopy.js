@@ -277,6 +277,7 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 		grunt.verbose.writeln( '   mapping files:' );
 		for ( var i = 0, l = fileList.length; i < l; i++ ) {
 			//need to iterate over glob style matches
+			grunt.verbose.writeln( '      globbing - ' + path.join( name, fileList[i] ) );
 			glob.sync( path.join( name, fileList[i] ), { cwd: bowerPath, dot: true } ).forEach( function( filename ) {
 				var src = path.normalize( path.join( bowerPath, filename ) );
 				grunt.verbose.writeln( '      ' + src );
