@@ -265,8 +265,14 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 		}
 		else {
 			grunt.verbose.writeln( '    using result value - ' + files );
-			//use value
-			fileList = fileList.concat( files );
+			//make sure files is an array
+			if (typeof files == 'string'){
+				files = [files];
+			}
+			//we just need the path relative to the module directory
+			files.forEach( function( file ){
+				fileList.push( file.replace( path.join( bowerPath, name ) , "" ) );
+			});
 		}
 
 		//get common path for building destination
