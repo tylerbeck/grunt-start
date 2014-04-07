@@ -238,7 +238,6 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 		var componentMap = getComponentMapping( name, files );
 
 		//copy files
-
 		for ( var k in componentMap ) {
 			if ( componentMap.hasOwnProperty( k ) ) {
 				grunt.file.copy( k, componentMap[ k ] );
@@ -270,20 +269,17 @@ module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCo
 			fileList = fileList.concat( files );
 		}
 
-		grunt.verbose.writeln( '   files:' );
-		fileList.forEach( function( filename ) {
-			grunt.verbose.writeln( '      ' + filename );
-		} );
-
 		//get common path for building destination
 		var commonPath = getCommonPathBase( fileList );
 
 		//build default mapping
 		var componentMap = {};
+		grunt.verbose.writeln( '   mapping files:' );
 		for ( var i = 0, l = fileList.length; i < l; i++ ) {
 			//need to iterate over glob style matches
 			glob.sync( path.join( name, fileList[i] ), { cwd: bowerPath, dot: true } ).forEach( function( filename ) {
 				var src = path.normalize( path.join( bowerPath, filename ) );
+				grunt.verbose.writeln( '      ' + src );
 				if ( grunt.file.isFile( src ) ) {
 					if ( expandedMap[ src ] != undefined ) {
 						//use user configured mapping if set
