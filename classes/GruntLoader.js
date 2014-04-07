@@ -1,11 +1,11 @@
 /***********************************************************************
- * Grunt Scaffolding
+ * Grunt Loader
  * Author: Copyright 2012-2014, Tyler Beck
  * License: MIT
  ***********************************************************************/
 
 /**
- * Creates an autoloading grunt scaffolding
+ * Creates an grunt loader
  * @param npmTasks
  * @param taskDirectories
  * @param configDirectories

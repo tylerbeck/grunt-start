@@ -4,7 +4,7 @@
  * License: MIT
  ***********************************************************************/
 
-var gruntToolbox = require('grunt-toolbox');
+var gs = require('grunt-start');
 
 var configDirs = [
 	"./config"
@@ -15,7 +15,7 @@ var taskDirs = [
 ];
 
 //npmTasks, taskDirectories, configDirectories, initFn
-module.exports = new gruntToolbox.Scaffold(
+module.exports = new gs.Loader(
 
 		//load npm tasks
 		true,

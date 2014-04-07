@@ -4,6 +4,6 @@
  * License: MIT
  ***********************************************************************/
 
-module.exports.Scaffold = require( './classes/GruntScaffold' );
+module.exports.Loader = require( './classes/GruntLoader' );
 module.exports.BowerCopy = require( './classes/BowerCopy' );
 module.exports.JsonSort = require( './classes/JsonSort' );
