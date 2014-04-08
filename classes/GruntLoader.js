@@ -13,6 +13,7 @@
  * @returns {Function}
  */
 module.exports = function( npmTasks, taskDirectories, configDirectories, initFn ){
+	'use strict';
 
 	/*================================================
 	 * Dependencies

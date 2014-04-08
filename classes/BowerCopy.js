@@ -17,6 +17,8 @@
  * @constructor
  */
 module.exports = function BowerCopy( grunt, bowerPath, libPath, shim, map, useCommonPath, done ) {
+	'use strict';
+
 	/*================================================
 	 * Dependencies
 	 *===============================================*/

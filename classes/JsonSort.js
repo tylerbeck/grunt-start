@@ -13,6 +13,7 @@
  * @constructor
  */
 module.exports = function JsonSort( grunt, filepath, props ){
+	'use strict';
 	/*================================================
 	 * Dependencies
 	 *===============================================*/
@@ -39,11 +40,17 @@ module.exports = function JsonSort( grunt, filepath, props ){
 				try {
 					//read file
 					var obj = grunt.file.readJSON( filepath );
-					//iterate specified properties & sort
 
+					//if props is set to asterix, get all object keys
+					if (props === "*"){
+						props = _.keys( obj );
+					}
+
+					//iterate specified properties & sort
 					props.forEach( function( prop ){
-						grunt.verbose.writeln( 'Sorting: '+ prop );
-						if (obj[ prop ]){
+						//only sort own properties of plain objects.
+						if ( obj.hasOwnProperty( prop ) && _.isPlainObject( obj[prop] )){
+							grunt.verbose.writeln( 'Sorting: '+ prop );
 							obj[ prop ] = sortObjectProperties( obj[ prop ] );
 						}
 					});
@@ -83,8 +90,8 @@ module.exports = function JsonSort( grunt, filepath, props ){
 		}
 
 		//validate and recast props
-		props = props || ['dependencies','devDependencies'];
-		if( typeof props == 'string' )
+		props = props || '*';
+		if( typeof props == 'string' && props != "*" )
 			props = [props];
 
 		return check;
