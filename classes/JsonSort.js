@@ -9,10 +9,11 @@
  * @param grunt
  * @param filepath
  * @param props
+ * @param indent
  * @returns {JsonSort}
  * @constructor
  */
-module.exports = function JsonSort( grunt, filepath, props ){
+module.exports = function JsonSort( grunt, filepath, props, indent ){
 	'use strict';
 	/*================================================
 	 * Dependencies
@@ -62,7 +63,7 @@ module.exports = function JsonSort( grunt, filepath, props ){
 					}
 
 					//save file
-					grunt.file.write( filepath, JSON.stringify( obj, null,"  ") );
+					grunt.file.write( filepath, JSON.stringify( obj, null, indent ) );
 
 				}
 				catch (e){
@@ -99,6 +100,15 @@ module.exports = function JsonSort( grunt, filepath, props ){
 		props = props || '*';
 		if( typeof props == 'string' && props != "*" && props != "/" )
 			props = [props];
+
+
+		//indent must be a string
+		indent = indent || '  ';
+		if ( typeof indent != 'string'){
+			grunt.log.error( 'Value of indent must be a string.');
+			check = false;
+		}
+
 
 		return check;
 	}

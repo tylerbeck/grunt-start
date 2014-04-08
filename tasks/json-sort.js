@@ -20,7 +20,8 @@ module.exports = function( grunt ){
 	 * @parameter path {String|undefined} the path to the JSON file to sort.
 	 *
 	 * @parameter properties {String|Array|undefined} properties to sort, can be a string, an array of strings or undefined.
-	 *  defaults to [ "dependencies", "devDependencies" ]
+	 *  defaults to "*" which indicates to sort all properties,
+	 *  "/" can be used to sort root level properties
 	 *
 	 *
 	 * CONFIG FRAGMENT:
@@ -52,7 +53,8 @@ module.exports = function( grunt ){
 		( new JsonSort(
 				grunt,
 				this.data.path,
-				this.data.properties
+				this.data.properties,
+				this.data.indent
 		) ).execute();
 
 		grunt.log.writeln();
