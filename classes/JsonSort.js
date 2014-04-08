@@ -41,19 +41,25 @@ module.exports = function JsonSort( grunt, filepath, props ){
 					//read file
 					var obj = grunt.file.readJSON( filepath );
 
-					//if props is set to asterix, get all object keys
-					if (props === "*"){
-						props = _.keys( obj );
+					if ( props === "/" ){
+						//we want to sort the first level properties
+						obj = sortObjectProperties( obj );
 					}
-
-					//iterate specified properties & sort
-					props.forEach( function( prop ){
-						//only sort own properties of plain objects.
-						if ( obj.hasOwnProperty( prop ) && _.isPlainObject( obj[prop] )){
-							grunt.verbose.writeln( 'Sorting: '+ prop );
-							obj[ prop ] = sortObjectProperties( obj[ prop ] );
+					else{
+						//if props is set to asterix, get all object keys
+						if (props === "*"){
+							props = _.keys( obj );
 						}
-					});
+
+						//iterate specified properties & sort
+						props.forEach( function( prop ){
+							//only sort own properties of plain objects.
+							if ( obj.hasOwnProperty( prop ) && _.isPlainObject( obj[prop] )){
+								grunt.verbose.writeln( 'Sorting: '+ prop );
+								obj[ prop ] = sortObjectProperties( obj[ prop ] );
+							}
+						});
+					}
 
 					//save file
 					grunt.file.write( filepath, JSON.stringify( obj, null,"  ") );
@@ -91,7 +97,7 @@ module.exports = function JsonSort( grunt, filepath, props ){
 
 		//validate and recast props
 		props = props || '*';
-		if( typeof props == 'string' && props != "*" )
+		if( typeof props == 'string' && props != "*" && props != "/" )
 			props = [props];
 
 		return check;
